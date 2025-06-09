@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Plano Alimentar Semanal</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .day { display: none; }
+        .day.active { display: block; }
+        .menu button.active { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Plano Alimentar Semanal 🍽</h1>
+
+    <!-- Botão para abrir formulário -->
+    <div style="text-align:center; margin: 20px;">
+        <button onclick="toggleForm()">+ Adicionar Item</button>
+    </div>
+
+    <!-- Formulário de adicionar item -->
+    <div id="add-item-form" style="display:none; max-width:600px; margin: 0 auto 20px; padding: 15px; background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <h2>Adicionar Item ao Plano</h2>
+        <label>Dia da Semana:
+            <select id="item-day">
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+            </select>
+        </label>
+        <br><br>
+        <label>Título da Refeição:
+            <input type="text" id="item-title" placeholder="Ex: Almoço">
+        </label>
+        <br><br>
+        <label>Horário:
+            <input type="text" id="item-time" placeholder="Ex: 13h">
+        </label>
+        <br><br>
+        <label>Descrição da Refeição:
+            <input type="text" id="item-content" placeholder="Ex: arroz, frango, salada">
+        </label>
+        <br><br>
+        <button onclick="addItem()">Salvar Item</button>
+        <button onclick="closeForm()" style="margin-left: 10px;">Fechar</button>
+    </div>
+
+    <div class="menu" style="text-align:center;">
+        <button onclick="showDay('segunda')" class="active">Segunda</button>
+        <button onclick="showDay('terca')">Terça</button>
+        <button onclick="showDay('quarta')">Quarta</button>
+        <button onclick="showDay('quinta')">Quinta</button>
+        <button onclick="showDay('sexta')">Sexta</button>
+        <button onclick="showDay('sabado')">Sábado</button>
+        <button onclick="showDay('domingo')">Domingo</button>
+    </div>
+
+    <!-- Dias da semana -->
+    <div id="segunda" class="day active">
+        <h2>Segunda-feira</h2>
+        <div class="meal"><h3>Pré-treino (6h00)</h3>
+            <label><input type="checkbox" /> 1 banana + 1 colher de aveia + café preto</label>
+        </div>
+        <div class="meal"><h3>Pós-treino (7h30)</h3>
+            <label><input type="checkbox" /> Shake (whey + banana + leite + aveia) + 2 ovos cozidos</label>
+        </div>
+        <div class="meal"><h3>Lanche manhã (10h00)</h3>
+            <label><input type="checkbox" /> Iogurte natural + granola + 1 colher de mel</label>
+        </div>
+        <div class="meal"><h3>Almoço (13h00)</h3>
+            <label><input type="checkbox" /> Arroz integral + frango grelhado + abobrinha refogada + salada</label>
+        </div>
+    </div>
+
+    <div id="terca" class="day">
+        <h2>Terça-feira</h2>
+        <div class="meal"><h3>Pré-treino (6h00)</h3>
+            <label><input type="checkbox" /> 1 fatia de pão integral com pasta de amendoim</label>
+        </div>
+        <div class="meal"><h3>Pós-treino (7h30)</h3>
+            <label><input type="checkbox" /> Omelete de 2 ovos com espinafre + 1 fatia de pão integral</label>
+        </div>
+        <div class="meal"><h3>Lanche manhã (10h00)</h3>
+            <label><input type="checkbox" /> Mamão com chia + 3 castanhas-do-pará</label>
+        </div>
+        <div class="meal"><h3>Almoço (13h00)</h3>
+            <label><input type="checkbox" /> Purê de batata-doce + carne moída + brócolis + salada</label>
+        </div>
+    </div>
+
+    <div id="quarta" class="day">
+        <h2>Quarta-feira</h2>
+        <div class="meal"><h3>Pré-treino (6h00)</h3>
+            <label><input type="checkbox" /> 1 banana + 1 colher de mel + 1 café preto</label>
+        </div>
+        <div class="meal"><h3>Pós-treino (7h30)</h3>
+            <label><input type="checkbox" /> Shake com whey + morango + leite + aveia + 1 fatia de pão com ovo</label>
+        </div>
+        <div class="meal"><h3>Lanche manhã (10h00)</h3>
+            <label><input type="checkbox" /> 1 maçã + 6 amêndoas</label>
+        </div>
+        <div class="meal"><h3>Almoço (13h00)</h3>
+            <label><input type="checkbox" /> Arroz + feijão + filé de frango + cenoura cozida + salada</label>
+        </div>
+    </div>
+
+    <div id="quinta" class="day">
+        <h2>Quinta-feira</h2>
+        <div class="meal"><h3>Pré-treino (6h00)</h3>
+            <label><input type="checkbox" /> 1 banana + 1 colher de pasta de amendoim</label>
+        </div>
+        <div class="meal"><h3>Pós-treino (7h30)</h3>
+            <label><input type="checkbox" /> Shake (whey + leite vegetal + aveia + fruta) + 2 ovos mexidos</label>
+        </div>
+        <div class="meal"><h3>Lanche manhã (10h00)</h3>
+            <label><input type="checkbox" /> Iogurte com chia + granola</label>
+        </div>
+        <div class="meal"><h3>Almoço (13h00)</h3>
+            <label><input type="checkbox" /> Arroz integral + peixe grelhado + abobrinha + beterraba cozida</label>
+        </div>
+    </div>
+
+    <div id="sexta" class="day">
+        <h2>Sexta-feira</h2>
+        <div class="meal"><h3>Pré-treino (6h00)</h3>
+            <label><input type="checkbox" /> 1 fatia pão + geleia sem açúcar + café preto</label>
+        </div>
+        <div class="meal"><h3>Pós-treino (7h30)</h3>
+            <label><input type="checkbox" /> Omelete de 2 ovos + batata-doce + shake de proteína</label>
+        </div>
+        <div class="meal"><h3>Lanche manhã (10h00)</h3>
+            <label><input type="checkbox" /> 1 pera + 3 castanhas-do-pará</label>
+        </div>
+        <div class="meal"><h3>Almoço (13h00)</h3>
+            <label><input type="checkbox" /> Arroz + feijão + frango grelhado + couve refogada + salada</label>
+        </div>
+    </div>
+
+    <div id="sabado" class="day"><h2>Sábado</h2></div>
+    <div id="domingo" class="day"><h2>Domingo</h2></div>
+
+    <!-- Script principal -->
+    <script>
+        function showDay(dayId) {
+            const days = document.querySelectorAll('.day');
+            const buttons = document.querySelectorAll('.menu button');
+            days.forEach(day => day.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(dayId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function toggleForm() {
+            const form = document.getElementById("add-item-form");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function closeForm() {
+            document.getElementById("add-item-form").style.display = "none";
+        }
+
+        function addItem() {
+            const day = document.getElementById("item-day").value;
+            const title = document.getElementById("item-title").value;
+            const time = document.getElementById("item-time").value;
+            const content = document.getElementById("item-content").value;
+
+            if (!title || !time || !content) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            const dayDiv = document.getElementById(day);
+            const newMeal = document.createElement("div");
+            newMeal.className = "meal";
+            newMeal.innerHTML = `<h3>${title} (${time})</h3><label><input type="checkbox" /> ${content}</label>`;
+            dayDiv.appendChild(newMeal);
+
+            // Limpar campos
+            document.getElementById("item-title").value = "";
+            document.getElementById("item-time").value = "";
+            document.getElementById("item-content").value = "";
+
+            closeForm();
+        }
+    </script>
+</body>
+</html>
