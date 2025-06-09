@@ -12,9 +12,17 @@
         <h1>Entrar</h1>
         <input type="text" id="username" placeholder="Usuário" />
         <input type="password" id="password" placeholder="Senha" />
-        <button onclick="login()">Acessar Plano</button>
-        <p id="error-message"></p>
+        
+        <!-- Botões de ação -->
+        <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;">
+            <button onclick="login()" style="flex:1;">Acessar Plano</button>
+            <button onclick="register()" style="flex:1; background-color: #555;">Registrar</button>
+        </div>
+
+        <!-- Mensagem de erro -->
+        <p id="error-message" style="color: red; margin-top: 12px;"></p>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
